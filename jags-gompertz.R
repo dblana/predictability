@@ -110,9 +110,8 @@ if(plot.flag==TRUE) { # Plot posterior distributions of the model parameters
 
 # Run example with default values
 fit.gompertz()
-
-#fit.gompertz(prior = 10)
-#fit.gompertz(delta.tpeak = 7)
-#fit.gompertz(delta.tpeak = 7,prior=10)
-#fit.gompertz(delta.tpeak = 21)
-#fit.gompertz(delta.tpeak = 21,prior=10)
+# fit.gompertz(prior = 10)
+# fit.gompertz(delta.tpeak = 7)
+# fit.gompertz(delta.tpeak = 7,prior=10)
+# fit.gompertz(delta.tpeak = 21)
+# fit.gompertz(delta.tpeak = 21,prior=10)
