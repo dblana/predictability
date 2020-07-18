@@ -14,7 +14,7 @@ colq <- function(X,q) apply(X, 2, function(X) as.numeric(quantile(X,q))) # Compu
 # prior: log(2) as in any country the doubling time has been larger than 1 day (non-inf would be, for instance 10, 1000, ...
 fit.gompertz <- function(delta.tpeak=-7,plot.flag=TRUE,save.plot=TRUE,prior=0.6931472)  {
   
-covid.es <- read.csv('covid-19-es.csv') # Load dataset
+covid.es <- read.csv('datasets/covid-19-es.csv') # Load dataset
 y <- covid.es$Confirmed # Number of confirmed cases
 day <- covid.es$Day # Day in calendar
 
@@ -53,7 +53,7 @@ model {
   c ~ dunif(0,10) # Non-informative prior
   m ~ dunif(3,8) # Order of magnitud of steady state: From 1000 to 10^8 total infected (Spanish population: 45*10^6)
   K <- 10^m # Gompertz steady-state parameter
-  tau ~ dgamma(.01,.01) # Precission of the gaussian: tau = 1/sqrt(variance)
+  tau ~ dgamma(.01,.01) # Precission of the gaussian: tau = 1/variance
 }
 "
 model=jags.model(textConnection(modelstring), data=data,n.chains = 3,n.adapt=5000) # burn-in=5000
@@ -93,7 +93,7 @@ if(plot.flag==TRUE) {
   abline(v=gompertz.peak,lwd=2,lty=3,col=2)
   text(gompertz.peak,150000,'Gompertz',pos=2,col=2)
   text(gompertz.peak,130000,'inflection point',pos=2,col=2)
-  if(save.plot==TRUE) dev.copy2pdf(file=sprintf("gompertz-fit_%+d_prior_%f.pdf",delta.tpeak,prior))
+  if(save.plot==TRUE) dev.copy2pdf(file=sprintf("output/gompertz-fit_%+d_prior_%f.pdf",delta.tpeak,prior))
   }
 if(plot.flag==TRUE) { # Plot posterior distributions of the model parameters
   x11(width=9,height=7)
