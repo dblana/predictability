@@ -25,10 +25,11 @@ y <- y[idx]  # Comment if you want to include them all.
 day <- day[idx]
 
 N <- length(y) # Number of obsrevations
-time <- (1:N) # Vector of times
+
 tpeak <- 47 # This corresponds to the 13th of April.
 tmax <- tpeak + delta.tpeak # Last point used to fit the data (-7: a week before, 14: two weaks later, ...) 
-tf <- 90 # Last day to project the data
+tf <- N-2 # Last day to project the data
+time <- (1:tf) # Vector of times
 
 # Barplot with the data
 if(plot.flag==TRUE) {
@@ -70,12 +71,14 @@ if(plot.flag==TRUE) {
   plot((data$y),xlim=c(0,tf),ylim=c(0,325000),pch=19,cex=.5,
        ylab='Total number of confirmed cases',xlab='Days since 27th of february',lwd=2,
        cex.lab=1.5,cex.axis=1.5)
-  points((data$y[1:tmax]),col=2,pch=19) # Plot only used points in bayesian regression
-  lines((colMed(yp)),col=2) # Median of posterior predictive
+  
   yM <- colq(yp,.975) # 97.5% quantile
   ym <- colq(yp,0.0225) # 2.5% quantile
-  lines(yM,lty=2,col=3)
-  lines(ym,lty=2,col=3)
+  tt <- c(time,reverse(time))
+  yy <- c(yM,reverse(ym))
+  polygon(tt,yy,col=rgb(0,0,0,.2),border='gray')
+  points((data$y[1:tmax]),col=2,pch=19) # Plot only used points in bayesian regression
+  lines((colMed(yp)),col='darkorange',lwd=4) # Median of posterior predictive
   arrows(75,190000,70,y[70],angle=10,lwd=3)
   text(70,180000,'After the 6th of may',pos=4)
   text(70,160000,'there is a new',pos=4)
@@ -92,7 +95,7 @@ if(plot.flag==TRUE) {
   text(gompertz.peak,130000,'inflection point',pos=2,col=2)
   if(save.plot==TRUE) dev.copy2eps(file=sprintf("gompertz-fit_%+d_prior_%f.eps",delta.tpeak,prior))
   }
-if(plot.flag==TRUE) { # Plot posterior distributions of the model parameters
+if(plot.flag==F) { # Plot posterior distributions of the model parameters
   x11(width=9,height=7)
   par(mfrow=c(2,2))
   par(mar=c(5.1,5.1,4.1,2.1))
@@ -107,10 +110,11 @@ if(plot.flag==TRUE) { # Plot posterior distributions of the model parameters
 
 # Run example with default values
 fit.gompertz()
-#fit.gompertz(prior = 10)
 
-#fit.gompertz(delta.tpeak = 7)
-#fit.gompertz(delta.tpeak = 7,prior=10)
+fit.gompertz(prior = 10)
 
-#fit.gompertz(delta.tpeak = 21)
-#fit.gompertz(delta.tpeak = 21,prior=10)
+fit.gompertz(delta.tpeak = 7)
+fit.gompertz(delta.tpeak = 7,prior=10)
+
+fit.gompertz(delta.tpeak = 21)
+fit.gompertz(delta.tpeak = 21,prior=10)
