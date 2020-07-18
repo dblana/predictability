@@ -93,7 +93,7 @@ if(plot.flag==TRUE) {
   abline(v=gompertz.peak,lwd=2,lty=3,col=2)
   text(gompertz.peak,150000,'Gompertz',pos=2,col=2)
   text(gompertz.peak,130000,'inflection point',pos=2,col=2)
-  if(save.plot==TRUE) dev.copy2eps(file=sprintf("gompertz-fit_%+d_prior_%f.eps",delta.tpeak,prior))
+  if(save.plot==TRUE) dev.copy2pdf(file=sprintf("gompertz-fit_%+d_prior_%f.pdf",delta.tpeak,prior))
   }
 if(plot.flag==F) { # Plot posterior distributions of the model parameters
   x11(width=9,height=7)
@@ -111,10 +111,8 @@ if(plot.flag==F) { # Plot posterior distributions of the model parameters
 # Run example with default values
 fit.gompertz()
 
-fit.gompertz(prior = 10)
-
-fit.gompertz(delta.tpeak = 7)
-fit.gompertz(delta.tpeak = 7,prior=10)
-
-fit.gompertz(delta.tpeak = 21)
-fit.gompertz(delta.tpeak = 21,prior=10)
+#fit.gompertz(prior = 10)
+#fit.gompertz(delta.tpeak = 7)
+#fit.gompertz(delta.tpeak = 7,prior=10)
+#fit.gompertz(delta.tpeak = 21)
+#fit.gompertz(delta.tpeak = 21,prior=10)
