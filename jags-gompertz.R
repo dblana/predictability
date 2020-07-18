@@ -95,15 +95,15 @@ if(plot.flag==TRUE) {
   text(gompertz.peak,130000,'inflection point',pos=2,col=2)
   if(save.plot==TRUE) dev.copy2pdf(file=sprintf("gompertz-fit_%+d_prior_%f.pdf",delta.tpeak,prior))
   }
-if(plot.flag==F) { # Plot posterior distributions of the model parameters
+if(plot.flag==TRUE) { # Plot posterior distributions of the model parameters
   x11(width=9,height=7)
   par(mfrow=c(2,2))
   par(mar=c(5.1,5.1,4.1,2.1))
 
-  hist(mat[,"b"],xlab="b",main="",col="skyblue",probability = T)
-  hist(mat[,"c"],xlab="c",main="",col="skyblue",probability = T)
-  hist(mat[,"K"],xlab="K",main="",col="skyblue",probability = T)
-  hist(1/sqrt(mat[,"tau"]),xlab=expression(sigma),main="",col="skyblue",probability = T)
+  hist(mat[,"b"],xlab="b",main="",col="skyblue",probability = T,border=FALSE)
+  hist(mat[,"c"],xlab="c",main="",col="skyblue",probability = T,border=FALSE)
+  hist(mat[,"K"],xlab="K",main="",col="skyblue",probability = T,border=FALSE)
+  hist(1/sqrt(mat[,"tau"]),xlab=expression(sigma),main="",col="skyblue",probability = T,border=FALSE)
   print(gelman.diag(output[,1:4]))
   }
 }
