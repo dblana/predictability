@@ -59,8 +59,8 @@ plot.SCIR.forensic.output <- function(output,data,tf=90) {
   
   # Auxiliary variables to create a polygon for the 95% posterior density
   tt <- c(ty,reverse(ty)) # Patch times and reversed times
-  yM <- colq(y,0.99)/log(10) # 97.5% quantile (and convert to log10 scale)
-  ym <- colq(y,0.001)/log(10)# 2.5% quantile
+  yM <- colq(y,0.975)/log(10) # 97.5% quantile (and convert to log10 scale)
+  ym <- colq(y,0.0225)/log(10)# 2.5% quantile
   yy <- c(yM,reverse(ym)) # patch 97.5 and (reversed) 2.5 quantiles
   polygon(tt,yy,col=rgb(0,0,0,.2),border='gray')
   
@@ -172,7 +172,7 @@ scir.bayesian.forensic <- function(tmax=34,plot.flag=TRUE,save.plot=TRUE) {
   # Priors for parameters
   p ~ dunif(0,5)
   q ~ dunif(0,5) 
-  p2 ~ dunif(0,5)
+  p2 ~ dunif(0,25)
   q2 ~ dunif(0,25)
   beta ~ dunif(0,1)
   rmu ~ dunif(0,1)
@@ -199,8 +199,8 @@ scir.bayesian.forensic <- function(tmax=34,plot.flag=TRUE,save.plot=TRUE) {
       }
   }
   
-  return(list(output.scir=output.scir,data=data)) # Return MCMC samples and data in a list
+  return(list(output.scir.forensic=output.scir.forensic,data=data)) # Return MCMC samples and data in a list
 }
-simulation.forensic <- scir.bayesian.forensic(tmax = ) # Run code
+simulation.forensic <- scir.bayesian.forensic(tmax = 70 ) # Run code 
 
 #saveRDS(simulation,'output/simulation.rda') # Uncomment to save all into a binary file
