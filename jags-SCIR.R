@@ -163,16 +163,3 @@ scir.bayesian <- function(tmax=33,plot.flag=TRUE,save.plot=TRUE) {
 simulation <- scir.bayesian() # Run code
 
 #saveRDS(simulation,'output/simulation.rda') # Uncomment to save all into a binary file
-
-
-pinta(output.scir,data)
-pinta(restored$output,restored$data)
-pintaLinear(restored$output,restored$data)
-gelm <- ploteaPanel(restored$output)
-gelm <- ploteaPanel(output.video)
-# par(mfrow=c(1,2))
-# pinta(restored$output)
-# pinta(output.video)
-pico <- pintaPeak(output.video)
-
-# dev.copy2pdf(file=sprintf('post-%d.pdf',tmax))
