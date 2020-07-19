@@ -172,8 +172,8 @@ scir.bayesian.forensic <- function(tmax=34,plot.flag=TRUE,save.plot=TRUE) {
   # Priors for parameters
   p ~ dunif(0,5)
   q ~ dunif(0,5) 
-  p2 ~ dunif(0,10)
-  q2 ~ dunif(0,10)
+  p2 ~ dunif(0,5)
+  q2 ~ dunif(0,25)
   beta ~ dunif(0,1)
   rmu ~ dunif(0,1)
   # Priors for precissions (inverse of variance)
@@ -201,6 +201,6 @@ scir.bayesian.forensic <- function(tmax=34,plot.flag=TRUE,save.plot=TRUE) {
   
   return(list(output.scir=output.scir,data=data)) # Return MCMC samples and data in a list
 }
-simulation.forensic <- scir.bayesian.forensic() # Run code
+simulation.forensic <- scir.bayesian.forensic(tmax = ) # Run code
 
 #saveRDS(simulation,'output/simulation.rda') # Uncomment to save all into a binary file
