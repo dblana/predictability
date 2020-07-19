@@ -9,13 +9,18 @@ colMed <- function(X) apply(X, 2, median) # Compute the median of a matrix, by c
 colq <- function(X,q) apply(X, 2, function(X) as.numeric(quantile(X,q))) # Compute de quantile "q" of a matrix, by column
 
 # Calculate the analytical solution of SCIR model
-exact.SCIR <- function(beta,rmu,p,q,data){
+exact.SCIR <- function(param,data){
   I0 <- data$I0
   Iq <- data$Iq
   t0 <- data$t0
   tq <- data$tq
   tmax <- data$tmax
   tf <- data$tf
+  beta <- param$beta
+  rmu <- param$rmu
+  p <- param$p
+  q <- param$q
+  
   t <- (t0+1):(tq-1) # From second day to quarantine 
   out <- c(I0,I0+(beta-rmu)*(t-t0))
   tout <- t
@@ -26,7 +31,7 @@ exact.SCIR <- function(beta,rmu,p,q,data){
 }
 
 # Plot prediction (same as for real data but with different vertical axis)
-plot.SCIR.output.mock <- function(output,data,tf=90) {
+plot.SCIR.output.mock <- function(output,data) {
   x11("",8,7) # Create new window for plotting
   par(mar=c(5.1,5.1,4.1,2.1)) # Change margins
   t0 <- data$t0
@@ -54,7 +59,7 @@ plot.SCIR.output.mock <- function(output,data,tf=90) {
   
   param <- data.frame(t(colMed(mat.output[,1:4]))) # Median parameters from posteriors ("beta","p","q","rmu")
   # Create a vector with the exact solution of the SCIR model for the median parameters
-  exact<- exact.SCIR(beta = param$beta,rmu = param$rmu,p=param$p,q=param$q,data=data)
+  exact<- exact.SCIR(param,data)
   t.median <- exact$tout
   y.median <- exact$out
   lines(t.median,y.median/log(10),col='darkorange',lwd=4)

@@ -37,7 +37,7 @@ exact.SCIR.forensic <- function(param,data){
 }
 
 # Plot prediction
-plot.SCIR.forensic.output <- function(output,data,tf=90) {
+plot.SCIR.forensic.output <- function(output,data) {
   x11("",8,7) # Create new window for plotting
   par(mar=c(5.1,5.1,4.1,2.1)) # Change margins
   
