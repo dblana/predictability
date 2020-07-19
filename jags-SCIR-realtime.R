@@ -74,18 +74,18 @@ plot.posteriors<- function(output) {
   return(gd$mpsrf)
 }
 
+# tmax: Last data-point used for estimation
+# plot.flag: To plot or not to plot
+# save,plot: To export figure or not
 scir.bayesian <- function(tmax=33,plot.flag=TRUE,save.plot=TRUE) {
   # Read datasets
-  confirmed <- read.csv('datasets/confirmed-march31.csv')
-  recovered <- read.csv('datasets/recovered-march31.csv')
-  deaths <- read.csv('datasets/deaths-march31.csv')
+  Day <- read.csv('datasets/confirmed-march31.csv')$Day
+  confirmed <- read.csv('datasets/confirmed-march31.csv')$Spain
+  recovered <- read.csv('datasets/recovered-march31.csv')$Spain
+  deaths <- read.csv('datasets/deaths-march31.csv')$Spain
   
-  print(names <- colnames(read.csv('datasets/names.csv'))) # Print regions (21 for all Spain aggregated)
-  region <- 21 # 21:Spain. Try 15 for Madrid or 10 for Catalonia 
-  name <- names[region]
-  
-  I <- log(confirmed[,region]-recovered[,region]-deaths[,region]) # Active cases in logarithmic scale
-  X <- c(0,log(diff(deaths[,region]+recovered[,region])))  # New deaths+recovered (daily derivative) in logarithmic scale 
+  I <- log(confirmed-recovered-deaths) # Active cases in logarithmic scale
+  X <- c(0,log(diff(deaths+recovered)))  # New deaths+recovered (daily derivative) in logarithmic scale 
   I[is.infinite(I) | is.na(I)] <- 0 # Remove infinites and NaNs
   X[is.infinite(X) | is.na(X)] <- 0 # Remove infinites and NaNs
   
@@ -99,8 +99,8 @@ scir.bayesian <- function(tmax=33,plot.flag=TRUE,save.plot=TRUE) {
   if(plot.flag==TRUE) {
     x11(width=16,height=7)
     par(mar=c(7.1,5.1,4.1,2.1))
-    barplot(height=I,names=confirmed$Day,las=2,col='skyblue',border = F,
-            main=sprintf('Total Number of Confirmed cases (%s)',name))
+    barplot(height=I,names=Day,las=2,col='skyblue',border = F,
+            main='Total Number of Confirmed cases (Spain)')
   }
   
   # Build a list for JAGS
@@ -161,7 +161,6 @@ scir.bayesian <- function(tmax=33,plot.flag=TRUE,save.plot=TRUE) {
   
   return(list(output.scir=output.scir,data=data)) # Return MCMC samples and data in a list
 }
-simulation <- scir.bayesian(save.plot = FALSE) # Run code
 simulation <- scir.bayesian() # Run code
 
 #saveRDS(simulation,'output/simulation.rda') # Uncomment to save all into a binary file
