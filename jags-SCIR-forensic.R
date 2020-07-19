@@ -172,8 +172,8 @@ scir.bayesian.forensic <- function(tmax=34,plot.flag=TRUE,save.plot=TRUE) {
   # Priors for parameters
   p ~ dunif(0,5)
   q ~ dunif(0,5) 
-  p2 ~ dunif(0,5)
-  q2 ~ dunif(0,5)
+  p2 ~ dunif(0,10)
+  q2 ~ dunif(0,10)
   beta ~ dunif(0,1)
   rmu ~ dunif(0,1)
   # Priors for precissions (inverse of variance)
