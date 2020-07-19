@@ -81,7 +81,7 @@ scir.bayesian <- function(tmax=33,plot.flag=TRUE,save.plot=TRUE) {
   deaths <- read.csv('datasets/deaths-march31.csv')
   
   print(names <- colnames(read.csv('datasets/names.csv'))) # Print regions (21 for all Spain aggregated)
-  region <- 21 
+  region <- 21 # 21:Spain. Try 15 for Madrid or 10 for Catalonia 
   name <- names[region]
   
   I <- log(confirmed[,region]-recovered[,region]-deaths[,region]) # Active cases in logarithmic scale
@@ -99,7 +99,8 @@ scir.bayesian <- function(tmax=33,plot.flag=TRUE,save.plot=TRUE) {
   if(plot.flag==TRUE) {
     x11(width=16,height=7)
     par(mar=c(7.1,5.1,4.1,2.1))
-    barplot(height=I,names=confirmed$Day,las=2,col='skyblue',border = F,main='Total Number of Confirmed cases (Spain)')
+    barplot(height=I,names=confirmed$Day,las=2,col='skyblue',border = F,
+            main=sprintf('Total Number of Confirmed cases (%s)',name))
   }
   
   # Build a list for JAGS
@@ -160,6 +161,7 @@ scir.bayesian <- function(tmax=33,plot.flag=TRUE,save.plot=TRUE) {
   
   return(list(output.scir=output.scir,data=data)) # Return MCMC samples and data in a list
 }
+simulation <- scir.bayesian(save.plot = FALSE) # Run code
 simulation <- scir.bayesian() # Run code
 
 #saveRDS(simulation,'output/simulation.rda') # Uncomment to save all into a binary file
