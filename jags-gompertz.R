@@ -33,8 +33,8 @@ time <- (1:tf) # Vector of times
 
 # Barplot with the data
 if(plot.flag==TRUE) {
-  x11(width=16,height=7)
-  par(mar=c(7.1,5.1,4.1,2.1))
+  x11(width=16,height=7) # Create new window for plotting
+  par(mar=c(7.1,5.1,4.1,2.1)) # Change margins
   barplot(height=y,names=day,las=2,col='skyblue',border = F,main='Total Number of Confirmed cases (Spain)')
 }
 
@@ -65,7 +65,7 @@ mat <- as.matrix(output) # Extract MCMC data in matrix form
 
 # Plot the results
 if(plot.flag==TRUE) {
-  x11(width=9,height=7)
+  x11(width=9,height=7) # Create new window for plotting
   par(mar=c(5.1,5.1,4.1,2.1))
   yp <- mat[,-(1:4)] # Posterior predictive (ypred[1] ...ypred[90])
   plot((data$y),xlim=c(0,tf),ylim=c(0,325000),pch=19,cex=.5,
@@ -79,6 +79,12 @@ if(plot.flag==TRUE) {
   polygon(tt,yy,col=rgb(0,0,0,.2),border='gray')
   points((data$y[1:tmax]),col=2,pch=19) # Plot only used points in bayesian regression
   lines((colMed(yp)),col='darkorange',lwd=4) # Median of posterior predictive
+  # Estimate theoretical point of inflection for the Gompertz curve
+  median.b <- median(mat[,"b"]) # Extract median value of parameter "b"
+  median.c <- median(mat[,"c"]) # Extract median value of parameter "c"
+  print(gompertz.peak <- -log(median.c/median.b)/median.c) # Theoretical inflection point
+  
+  # Add some annotations to the plot
   arrows(75,190000,70,y[70],angle=10,lwd=3)
   text(70,180000,'After the 6th of may',pos=4)
   text(70,160000,'there is a new',pos=4)
@@ -86,25 +92,23 @@ if(plot.flag==TRUE) {
   abline(v=tpeak,lty=2,col=4)
   text(tpeak,50000,"Real inflection ",pos=4,col=4)
   text(tpeak,30000,"point (epidemic  'peak')",pos=4,col=4)
-  
-  median.b <- median(mat[,"b"]) # Extract median value of parameter "b"
-  median.c <- median(mat[,"c"]) # Extract median value of parameter "c"
-  print(gompertz.peak <- -log(median.c/median.b)/median.c) # Theoretical inflection point
   abline(v=gompertz.peak,lwd=2,lty=3,col=2)
   text(gompertz.peak,150000,'Gompertz',pos=2,col=2)
   text(gompertz.peak,130000,'inflection point',pos=2,col=2)
+  # Export figure?
   if(save.plot==TRUE) dev.copy2pdf(file=sprintf("output/gompertz-fit_%+d_prior_%f.pdf",delta.tpeak,prior))
   }
 if(plot.flag==TRUE) { # Plot posterior distributions of the model parameters
-  x11(width=9,height=7)
-  par(mfrow=c(2,2))
-  par(mar=c(5.1,5.1,4.1,2.1))
+  x11(width=9,height=7) # Create new window for plotting
+  par(mfrow=c(2,2)) # A 2x2 plot 
+  par(mar=c(5.1,5.1,4.1,2.1)) # Change margins
 
+  # Plot posteriors for model parameters
   hist(mat[,"b"],xlab="b",main="",col="skyblue",probability = T,border=FALSE)
   hist(mat[,"c"],xlab="c",main="",col="skyblue",probability = T,border=FALSE)
   hist(mat[,"K"],xlab="K",main="",col="skyblue",probability = T,border=FALSE)
   hist(1/sqrt(mat[,"tau"]),xlab=expression(sigma),main="",col="skyblue",probability = T,border=FALSE)
-  print(gelman.diag(output[,1:4]))
+  print(gelman.diag(output[,1:4])) # Check if the MCMC chains converged
   }
 }
 
