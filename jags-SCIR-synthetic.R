@@ -99,7 +99,6 @@ scir.mockdata <- function(tmax=33,plot.flag=TRUE,save.plot=TRUE) {
   I[is.infinite(I)] <- 0 # Remove infinites
   X[is.infinite(X)] <- 0 # Remove infinites
   
-  t <- 1:length(I)-1 # Vector of times (0 to length of data-1)
   tf <- 90 # Last day to project the data
   t0 <- which(I>0)[1] # First day with more than 1 confirmed case
   tX0 <- which(X>0)[1] # First day with more than 1 new death or recovered
@@ -109,7 +108,7 @@ scir.mockdata <- function(tmax=33,plot.flag=TRUE,save.plot=TRUE) {
   if(plot.flag==TRUE) {
     x11(width=16,height=7)
     par(mar=c(7.1,5.1,4.1,2.1))
-    barplot(height=I,names=t+1,las=2,col='skyblue',border = F,main='Total Number of Confirmed cases (Synthetic data)')
+    barplot(height=I,names=1:length(I),las=2,col='skyblue',border = F,main='Total Number of Confirmed cases (Synthetic data)')
   }
   
   # Build a list for JAGS
@@ -145,7 +144,7 @@ scir.mockdata <- function(tmax=33,plot.flag=TRUE,save.plot=TRUE) {
   q ~ dunif(0,5)
   beta ~ dunif(0,0.5)
   rmu ~ dunif(0,0.5)
-  # Priors for precissions (inverse of variance)
+  # Priors for precision (inverse of variance)
   tauI ~ dgamma(.01,.01)
   tauX ~ dgamma(0.01,0.01)
   y[t0] <- I0
@@ -161,11 +160,12 @@ scir.mockdata <- function(tmax=33,plot.flag=TRUE,save.plot=TRUE) {
   
   if(plot.flag==TRUE) {
     plot.SCIR.output.mock(output.scir.mock,data)
-    plot.posteriors(output.scir.mock)
-    if(save.plot==TRUE)  {
+    if(save.plot==TRUE)  
       dev.copy2pdf(file='output/bayesian-SCIR-fit-synthetic.pdf')
+    plot.posteriors(output.scir.mock)
+    if(save.plot==TRUE)  
+    
       dev.copy2pdf(file='output/posteriors-SCIR-synthetic.pdf')
-    }
   }
   
   return(list(output.scir.mock=output.scir.mock,data=data)) # Return MCMC samples and data in a list

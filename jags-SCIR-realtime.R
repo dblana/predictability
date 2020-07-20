@@ -103,7 +103,6 @@ scir.bayesian <- function(tmax=33,plot.flag=TRUE,save.plot=TRUE) {
   I[is.infinite(I) | is.na(I)] <- 0 # Remove infinites and NaNs
   X[is.infinite(X) | is.na(X)] <- 0 # Remove infinites and NaNs
   
-  t <- 1:length(I)-1 # Vector of times (0 to length of data-1)
   tf <- 90 # Last day to project the data
   t0 <- which(I>0)[1] # First day with more than 1 confirmed case
   tX0 <- which(X>0)[1] # First day with more than 1 new death or recovered
@@ -134,24 +133,25 @@ scir.bayesian <- function(tmax=33,plot.flag=TRUE,save.plot=TRUE) {
   for(t in (tq+1):tmax) {
   I[t] ~ dnorm(Iq+ ((beta*q)/(p+q)^2*(1-exp(-(p+q)*(t-tq)))+ (beta-rmu-beta*q/(q+p))*(t-tq)),tauI)
   }
-  # Posterior predictive for active cases post-confinement
+  # Posterior predictive for active cases post-confinement (extended until tf)
   for(t in (tq+1):tf) {
   y[t] ~ dnorm(y[tq]+ ((beta*q)/(p+q)^2*(1-exp(-(p+q)*(t-tq)))+(beta-rmu-beta*q/(q+p))*(t-tq)),tauI)
   }
-  # Regression for new death+recovered cases
+  # Regression for new deaths+recovered 
   for(t in tX0:tmax) {
-  X[t] ~ dnorm(log(rmu)+I[t],tauX)
+  X[t] ~ dnorm(log(rmu)+I[t],tauX) # New Deaths + Recovered
   }
+  # Posterior predictive for new deaths+recovered (extended until tf)
   for(t in (tX0):tf) {
-  z[t] ~ dnorm(log(rmu)+y[t],tauX) # New Death + Recovered
+  z[t] ~ dnorm(log(rmu)+y[t],tauX) 
   }
   # Priors for parameters
   p ~ dunif(0,5)
   q ~ dunif(0,5)
-  beta ~ dunif(0,1)
-  rmu ~ dunif(0,1)
-  # Priors for precissions (inverse of variance)
-  tauI ~ dgamma(.01,.01)
+  beta ~ dunif(0,1) # Doubling time is less than 1 per day
+  rmu ~ dunif(0,1) # rmu is lower than beta (so R0>1)
+  # Priors for precision (inverse of variance)
+  tauI ~ dgamma(0.01,0.01)
   tauX ~ dgamma(0.01,0.01)
   y[t0] <- I0
   }
@@ -166,11 +166,12 @@ scir.bayesian <- function(tmax=33,plot.flag=TRUE,save.plot=TRUE) {
   
   if(plot.flag==TRUE) {
     plot.SCIR.output(output.scir,data)
-    plot.posteriors(output.scir)
-    if(save.plot==TRUE)  {
+    if(save.plot==TRUE) 
       dev.copy2pdf(file='output/bayesian-SCIR-fit.pdf')
+    plot.posteriors(output.scir)
+    if(save.plot==TRUE) 
       dev.copy2pdf(file='output/posteriors-SCIR.pdf')
-      }
+      
   }
   
   return(list(output.scir=output.scir,data=data)) # Return MCMC samples and data in a list

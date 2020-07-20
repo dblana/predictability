@@ -53,7 +53,7 @@ model {
   c ~ dunif(0,10) # Non-informative prior
   m ~ dunif(3,8) # Order of magnitud of steady state: From 1000 to 10^8 total infected (Spanish population: 45*10^6)
   K <- 10^m # Gompertz steady-state parameter
-  tau ~ dgamma(.01,.01) # Precission of the gaussian: tau = 1/variance
+  tau ~ dgamma(.01,.01) # Precision of the gaussian: tau = 1/variance
 }
 "
 model=jags.model(textConnection(modelstring), data=data,n.chains = 3,n.adapt=5000) # burn-in=5000

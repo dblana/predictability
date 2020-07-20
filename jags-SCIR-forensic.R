@@ -123,7 +123,6 @@ scir.bayesian.forensic <- function(tmax=34,plot.flag=TRUE,save.plot=TRUE) {
   I[is.infinite(I) | is.na(I)] <- 0 # Remove infinites and NaNs
   X[is.infinite(X) | is.na(X)] <- 0 # Remove infinites and NaNs
   
-  t <- 1:length(I)-1 # Vector of times (0 to length of data-1)
   t0 <- which(I>0)[1] # First day with more than 1 confirmed case
   tX0 <- which(X>0)[1] # First day with more than 1 new death or recovered
   
@@ -150,22 +149,24 @@ scir.bayesian.forensic <- function(tmax=34,plot.flag=TRUE,save.plot=TRUE) {
   I[t] ~ dnorm(I0+(beta-rmu)*(t-t0),tauI) # Active cases
   y[t] ~ dnorm(I0+(beta-rmu)*(t-t0),tauI) # Posterior predictive   
   }
-  # Regression for active cases post-first-confinement (populations are in log scale)
+  # Regression for active cases after the first confinement (populations are in log scale)
   for(t in (tq+1):tq2) {
   I[t] ~ dnorm(Iq+ ((beta*q)/(p+q)^2*(1-exp(-(p+q)*(t-tq)))+ (beta-rmu-beta*q/(q+p))*(t-tq)),tauI)
-  y[t] ~ dnorm(y[tq]+ ((beta*q)/(p+q)^2*(1-exp(-(p+q)*(t-tq)))+ (beta-rmu-beta*q/(q+p))*(t-tq)),tauI)
+  y[t] ~ dnorm(y[tq]+ ((beta*q)/(p+q)^2*(1-exp(-(p+q)*(t-tq)))+ (beta-rmu-beta*q/(q+p))*(t-tq)),tauI) # posterior predictive
   }
+  # Regression for active cases after the second confinement (populations are in log scale)
   for(t in (tq2+1):tmax) {
   I[t] ~ dnorm(Iq2+ ((beta*q2)/(p2+q2)^2*(1-exp(-(p2+q2)*(t-tq2)))+ (beta-rmu-beta*q2/(q2+p2))*(t-tq2)),tauI)
   }
-  # Posterior predictive for active cases post-confinement
+  # Posterior predictive for active cases after the second confinement (extended until tf)
   for(t in (tq2+1):tf) {
   y[t] ~ dnorm(y[tq2]+ ((beta*q2)/(p2+q2)^2*(1-exp(-(p2+q2)*(t-tq2)))+ (beta-rmu-beta*q2/(q2+p2))*(t-tq2)),tauI)
   }
-  # Regression for new death+recovered cases
+  # Regression for new deaths+recovered cases
   for(t in tX0:tmax) {
   X[t] ~ dnorm(log(rmu)+I[t],tauX)
   }
+  # Posterior predictive for new deaths+recovered (extended until tf)
   for(t in (tX0):tf) {
   z[t] ~ dnorm(log(rmu)+y[t],tauX) # New Death + Recovered
   }
@@ -176,7 +177,7 @@ scir.bayesian.forensic <- function(tmax=34,plot.flag=TRUE,save.plot=TRUE) {
   q2 ~ dunif(0,25)
   beta ~ dunif(0,1)
   rmu ~ dunif(0,1)
-  # Priors for precissions (inverse of variance)
+  # Priors for precision (inverse of variance)
   tauI ~ dgamma(.01,.01)
   tauX ~ dgamma(0.01,0.01)
   y[t0] <- I0
@@ -192,11 +193,12 @@ scir.bayesian.forensic <- function(tmax=34,plot.flag=TRUE,save.plot=TRUE) {
   
   if(plot.flag==TRUE) {
     plot.SCIR.forensic.output(output.scir.forensic,data)
-    plot.posteriors.forensic(output.scir.forensic)
-    if(save.plot==TRUE)  {
+    if(save.plot==TRUE)  
       dev.copy2pdf(file='output/forensic-bayesian-SCIR-fit.pdf')
+    plot.posteriors.forensic(output.scir.forensic)
+    if(save.plot==TRUE)  
       dev.copy2pdf(file='output/forensic-posteriors-SCIR.pdf')
-      }
+      
   }
   
   return(list(output.scir.forensic=output.scir.forensic,data=data)) # Return MCMC samples and data in a list
