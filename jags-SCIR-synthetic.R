@@ -145,7 +145,7 @@ scir.mockdata <- function(tmax=33,plot.flag=TRUE,save.plot=TRUE) {
   beta ~ dunif(0,0.5)
   rmu ~ dunif(0,0.5)
   # Priors for precision (inverse of variance)
-  tauI ~ dgamma(.01,.01)
+  tauI ~ dgamma(0.01,0.01)
   tauX ~ dgamma(0.01,0.01)
   y[t0] <- I0
   }

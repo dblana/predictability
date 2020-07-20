@@ -146,13 +146,13 @@ scir.bayesian <- function(tmax=33,plot.flag=TRUE,save.plot=TRUE) {
   z[t] ~ dnorm(log(rmu)+y[t],tauX) 
   }
   # Priors for parameters
-  p ~ dunif(0,5)
-  q ~ dunif(0,5)
+  p ~ dunif(0,5) # Non-informative prior
+  q ~ dunif(0,5) # Non-informative prior
   beta ~ dunif(0,1) # Doubling time is less than 1 per day
   rmu ~ dunif(0,1) # rmu is lower than beta (so R0>1)
   # Priors for precision (inverse of variance)
-  tauI ~ dgamma(0.01,0.01)
-  tauX ~ dgamma(0.01,0.01)
+  tauI ~ dgamma(0.01,0.01) # Non-informative prior
+  tauX ~ dgamma(0.01,0.01)# Non-informative prior
   y[t0] <- I0
   }
   "

@@ -171,15 +171,15 @@ scir.bayesian.forensic <- function(tmax=34,plot.flag=TRUE,save.plot=TRUE) {
   z[t] ~ dnorm(log(rmu)+y[t],tauX) # New Death + Recovered
   }
   # Priors for parameters
-  p ~ dunif(0,5)
+  p ~ dunif(0,5) 
   q ~ dunif(0,5) 
-  p2 ~ dunif(0,25)
-  q2 ~ dunif(0,25)
-  beta ~ dunif(0,1)
-  rmu ~ dunif(0,1)
+  p2 ~ dunif(0,5)
+  q2 ~ dunif(0,5)
+  beta ~ dunif(0,1) # Doubling time is less than 1 per day
+  rmu ~ dunif(0,1) # rmu is lower than beta (so R0>1)
   # Priors for precision (inverse of variance)
-  tauI ~ dgamma(.01,.01)
-  tauX ~ dgamma(0.01,0.01)
+  tauI ~ dgamma(0.01,0.01) # Non-informative prior
+  tauX ~ dgamma(0.01,0.01) # Non-informative prior
   y[t0] <- I0
   }
   "
@@ -203,6 +203,6 @@ scir.bayesian.forensic <- function(tmax=34,plot.flag=TRUE,save.plot=TRUE) {
   
   return(list(output.scir.forensic=output.scir.forensic,data=data)) # Return MCMC samples and data in a list
 }
-simulation.forensic <- scir.bayesian.forensic(tmax = 70 ) # Run code 
+simulation.forensic <- scir.bayesian.forensic(tmax = 33 ) # Run code 
 
 #saveRDS(simulation,'output/simulation.rda') # Uncomment to save all into a binary file
