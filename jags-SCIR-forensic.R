@@ -193,6 +193,7 @@ scir.bayesian.forensic <- function(tmax=34,plot.flag=TRUE,save.plot=TRUE) {
   
   if(plot.flag==TRUE) {
     plot.SCIR.forensic.output(output.scir.forensic,data)
+    abline(v=47)
     if(save.plot==TRUE)  
       dev.copy2pdf(file='output/forensic-bayesian-SCIR-fit.pdf')
     plot.posteriors.forensic(output.scir.forensic)
@@ -203,6 +204,6 @@ scir.bayesian.forensic <- function(tmax=34,plot.flag=TRUE,save.plot=TRUE) {
   
   return(list(output.scir.forensic=output.scir.forensic,data=data)) # Return MCMC samples and data in a list
 }
-simulation.forensic <- scir.bayesian.forensic(tmax = 33 ) # Run code 
+simulation.forensic <- scir.bayesian.forensic(tmax = 61 ) # Run code 
 
 #saveRDS(simulation,'output/simulation.rda') # Uncomment to save all into a binary file
