@@ -67,10 +67,10 @@ plot.SCIR.output <- function(output,data) {
   
   # Annotate the plot
   arrows(tq,5,tq,3.2,angle=10,lwd=2) 
-  text(tq,5.4,"1st Confiment",pos=3,cex=1.5)
+  text(tq,5.4,"1st Confinement",pos=3,cex=1.5)
   text(tq,5,"begins",pos=3,cex=1.5)
   arrows(33,3,33,4.8,angle=10,lwd=2) 
-  text(33,3,"2nd Confiment begins",pos=1,cex=1.5)
+  text(33,3,"2nd Confinement begins",pos=1,cex=1.5)
   arrows(47,6.5,47,5,angle=10,lwd=2) 
   text(47,6.5,"Epidemic peak",pos=3,cex=1.5)
 }

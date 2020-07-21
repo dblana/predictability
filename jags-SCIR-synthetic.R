@@ -65,7 +65,7 @@ plot.SCIR.output.mock <- function(output,data) {
   lines(t.median,y.median/log(10),col='darkorange',lwd=4)
   
   arrows(tq,3.5,tq,2,angle=10,lwd=2) # Annotate the plot
-  text(tq,3.5,"Confiment begins",pos=3)
+  text(tq,3.5,"Confinement begins",pos=3)
 }
 
 plot.posteriors<- function(output) {
