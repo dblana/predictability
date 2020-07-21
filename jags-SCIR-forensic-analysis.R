@@ -65,8 +65,13 @@ plot.SCIR.output <- function(output,data) {
   lines(t.median,y.median/log(10),col='darkorange',lwd=4)
   points(ty[tmax:tf],data$I[tmax:tf]/log(10),pch=19,cex=.5,col=2)
   
-  arrows(tq,5,tq,3,angle=10,lwd=2) # Annotate the plot
-  text(tq,5,"Confiment begins",pos=3)
+  # Annotate the plot
+  arrows(tq,5,tq,3.2,angle=10,lwd=2) 
+  text(tq,5,"1st Confiment begins",pos=3)
+  arrows(33,3,33,4.8,angle=10,lwd=2) 
+  text(33,3,"2nd Confiment begins",pos=1)
+  arrows(47,6.5,47,5,angle=10,lwd=2) 
+  text(47,6.5,"Epidemic peak",pos=3)
 }
 
 plot.posteriors<- function(output) {
@@ -177,7 +182,6 @@ scir.bayesian2 <- function(tmax=33,plot.flag=TRUE,save.plot=TRUE) {
   
   if(plot.flag==TRUE) {
     plot.SCIR.output(output.scir,data)
-    abline(v=47)
     if(save.plot==TRUE) 
       dev.copy2pdf(file=sprintf('output/bayesian-SCIR-fit-%d.pdf',tmax))
     plot.posteriors(output.scir)
@@ -188,9 +192,11 @@ scir.bayesian2 <- function(tmax=33,plot.flag=TRUE,save.plot=TRUE) {
   
   return(list(output.scir=output.scir,data=data)) # Return MCMC samples and data in a list
 }
-simulation2 <- scir.bayesian2(tmax = 47,save.plot = F) # Run code
-simulation2 <- scir.bayesian2(tmax = 54,save.plot = F) # Run code
-simulation2 <- scir.bayesian2(tmax = 61,save.plot = F) # Run code
-simulation2 <- scir.bayesian2(tmax = 68,save.plot = F) # Run code
+simulations <- list()
+simulations[[1]] <- scir.bayesian2(tmax = 47) # Run code
+simulation[[2]] <- scir.bayesian2(tmax = 54) # Run code
+simulation[[3]] <- scir.bayesian2(tmax = 61) # Run code
+simulation[[4]] <- scir.bayesian2(tmax = 68) # Run code
 
+saveRDS(simulations,'~/Documentos/Dropbox/Research/Big Data/Coronavirus/Comite del Covid-19/new-R/simulations-forensic.rda') # Uncomment to save all into a binary file
 #saveRDS(simulation,'output/simulation.rda') # Uncomment to save all into a binary file
