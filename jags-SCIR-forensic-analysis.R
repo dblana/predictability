@@ -67,11 +67,12 @@ plot.SCIR.output <- function(output,data) {
   
   # Annotate the plot
   arrows(tq,5,tq,3.2,angle=10,lwd=2) 
-  text(tq,5,"1st Confiment begins",pos=3)
+  text(tq,5.4,"1st Confiment",pos=3,cex=1.5)
+  text(tq,5,"begins",pos=3,cex=1.5)
   arrows(33,3,33,4.8,angle=10,lwd=2) 
-  text(33,3,"2nd Confiment begins",pos=1)
+  text(33,3,"2nd Confiment begins",pos=1,cex=1.5)
   arrows(47,6.5,47,5,angle=10,lwd=2) 
-  text(47,6.5,"Epidemic peak",pos=3)
+  text(47,6.5,"Epidemic peak",pos=3,cex=1.5)
 }
 
 plot.posteriors<- function(output) {
@@ -194,9 +195,9 @@ scir.bayesian2 <- function(tmax=33,plot.flag=TRUE,save.plot=TRUE) {
 }
 simulations <- list()
 simulations[[1]] <- scir.bayesian2(tmax = 47) # Run code
-simulation[[2]] <- scir.bayesian2(tmax = 54) # Run code
-simulation[[3]] <- scir.bayesian2(tmax = 61) # Run code
-simulation[[4]] <- scir.bayesian2(tmax = 68) # Run code
+simulations[[2]] <- scir.bayesian2(tmax = 54) # Run code
+simulations[[3]] <- scir.bayesian2(tmax = 61) # Run code
+simulations[[4]] <- scir.bayesian2(tmax = 68) # Run code
 
-saveRDS(simulations,'~/Documentos/Dropbox/Research/Big Data/Coronavirus/Comite del Covid-19/new-R/simulations-forensic.rda') # Uncomment to save all into a binary file
+# saveRDS(simulations,'~/Documentos/Dropbox/Research/Big Data/Coronavirus/Comite del Covid-19/new-R/simulations-forensic.rda') # Uncomment to save all into a binary file
 #saveRDS(simulation,'output/simulation.rda') # Uncomment to save all into a binary file
