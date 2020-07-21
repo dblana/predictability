@@ -29,6 +29,26 @@ exact.SCIR <- function(param,data){
   return(data.frame(tout,out))
 }
 
+exact.SCIR.exp <- function(param,data){
+  I0 <- data$I0
+  Iq <- data$Iq
+  t0 <- data$t0
+  tq <- data$tq
+  tf <- data$tf
+  beta <- param$beta
+  rmu <- param$rmu
+  p <- param$p
+  q <- param$q
+  
+  t <- (t0+1):(tq-1) # From second day to quarantine 
+  out <- c(I0,I0+(beta-rmu)*(t-t0))
+  tout <- t
+  t <- (tq+1):tf # From day after quarantine to the end
+  out <- c(out,Iq+ ((beta*q)/(p+q)^2*(1-exp(-(p+q)*(t-tq)))+(beta-rmu-beta*q/(q+p))*(t-tq)))
+  tout <- c(tout,tq,t)-1
+  return(data.frame(tout,exp(out)))
+}
+
 # Plot prediction
 plot.SCIR.output <- function(output,data) {
   x11("",8,7) # Create new window for plotting
