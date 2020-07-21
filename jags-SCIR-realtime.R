@@ -84,7 +84,7 @@ plot.SCIR.output <- function(output,data) {
   lines(t.median,y.median/log(10),col='darkorange',lwd=4)
   
   arrows(tq,5,tq,3,angle=10,lwd=2) # Annotate the plot
-  text(tq,5,"Confiment begins",pos=3)
+  text(tq,5,"Confinement begins",pos=3)
 }
 
 plot.posteriors<- function(output) {
