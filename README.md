@@ -1,8 +1,16 @@
 # predictability
+## Codes:
+- All codes require the library rjags, invoked using: 
+```{r}
+dim(iris)
+```
+  + jags-SCIR-realtime.R
+  + jags-SCIR-synthetic.R
+  + jags-SCIR-forensic-analysis.R
+  + jags-gompertz.R
+  + plot.SCIR.linear.output.R
+  + deSolve-SIQR.R
 
-## References
-- V1: https://arxiv.org/abs/2004.08842
-- V2: 
 
 ## Data:
 All the datasets have been obtained from publicly available repositories. 
@@ -23,3 +31,7 @@ https://github.com/datadista/datasets/tree/master/COVID%2019/old_series
 - Updated Datasets (late july), created from Spanish Ministry of Health and curated by El-Pais-Data:
 https://www.epdata.es/datos/coronavirus-china-datos-graficos/498
   + covid-19-es.csv: Different columns contain information about confirmed, recovered and deaths.
+
+## References
+- V1: https://arxiv.org/abs/2004.08842
+- V2: 
