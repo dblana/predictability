@@ -1,4 +1,5 @@
 # predictability
+A simple bayesian analysis of the compartimental SCIR model introduced in Reference: **Predictability: Can the turning point and end of an expanding epidemic be precisely forecast while the epidemic is still spreading?** using epidemiological data for Spain.
 ## Codes:
 - All codes require the library rjags, invoked using: 
 ```{r}
