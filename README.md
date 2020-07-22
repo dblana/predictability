@@ -15,7 +15,7 @@ require(rjags)
 require(deSolve)
 ```
 - Auxiliary codes:
- + plot.SCIR.linear.output.R: Auxiliary function to plot the output of jags-SCIR-realtime.R but using a linear vertical scale.
+  + plot.SCIR.linear.output.R: Auxiliary function to plot the output of jags-SCIR-realtime.R but using a linear vertical scale.
   + deSolve-SIQR.R: Integraion of the Ordinary Differential Equation for the SCIR model.
 
 
