@@ -24,7 +24,7 @@ plot.SCIR.linear.output <- function(output,data) {
   ym <- colq(y,0.0225)# 2.5% quantile
   yy <- exp(c(yM,reverse(ym))) # patch 97.5 and (reversed) 2.5 quantiles
   ix <- seq(1,180,6)
-  polygon(tt[ix],yy[ix],col=rgb(0,0,0,.2),border='gray')
+  polygon(tt[ix],yy[ix],col=rgb(0,0,0,.2),border=rgb(0,0,0,.2),lwd=3)
   
   param <- data.frame(t(colMed(mat.output[,1:4]))) # Median parameters from posteriors ("beta","p","q","rmu")
   # Create a vector with the exact solution of the SCIR model for the median parameters

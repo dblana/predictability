@@ -76,8 +76,8 @@ if(plot.flag==TRUE) {
   ym <- colq(yp,0.0225) # 2.5% quantile
   tt <- c(time,reverse(time))
   yy <- c(yM,reverse(ym))
-  polygon(tt,yy,col=rgb(0,0,0,.2),border='gray')
-  points((data$y[1:tmax]),col=2,pch=19) # Plot only used points in bayesian regression
+  polygon(tt,yy,col=rgb(0,0,0,.2),border=rgb(0,0,0,.2),lwd=3)
+  points((data$y[1:tmax]),col='darkgreen',cex=1.5,pch=19) # Plot only used points in bayesian regression
   lines((colMed(yp)),col='darkorange',lwd=4) # Median of posterior predictive
   # Estimate theoretical point of inflection for the Gompertz curve
   median.b <- median(mat[,"b"]) # Extract median value of parameter "b"
@@ -86,15 +86,15 @@ if(plot.flag==TRUE) {
   
   # Add some annotations to the plot
   arrows(75,190000,70,y[70],angle=10,lwd=3)
-  text(70,180000,'After the 6th of may',pos=4)
-  text(70,160000,'there is a new',pos=4)
-  text(70,140000,'inflection point',pos=4)
+  text(70,180000,'After the 6th of may',pos=4,cex=1.5)
+  text(70,160000,'there is a new',pos=4,cex=1.5)
+  text(70,140000,'inflection point',pos=4,cex=1.5)
   abline(v=tpeak,lty=2,col=4)
-  text(tpeak,50000,"Real inflection ",pos=4,col=4)
-  text(tpeak,30000,"point (epidemic  'peak')",pos=4,col=4)
-  abline(v=gompertz.peak,lwd=2,lty=3,col=2)
-  text(gompertz.peak,150000,'Gompertz',pos=2,col=2)
-  text(gompertz.peak,130000,'inflection point',pos=2,col=2)
+  text(tpeak,50000,"Real inflection ",pos=4,col=4,cex=1.5)
+  text(tpeak,30000,"point (epidemic  'peak')",pos=4,col=4,cex=1.5)
+  abline(v=gompertz.peak,lwd=2,lty=3,col='darkgreen',cex=1.5)
+  text(gompertz.peak,150000,'Gompertz',pos=2,col='darkgreen',cex=1.5)
+  text(gompertz.peak,130000,'inflection point',pos=2,col='darkgreen',cex=1.5)
   # Export figure?
   if(save.plot==TRUE) dev.copy2pdf(file=sprintf("output/gompertz-fit_%+d_prior_%f.pdf",delta.tpeak,prior))
   }
