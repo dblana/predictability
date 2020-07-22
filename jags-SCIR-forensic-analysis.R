@@ -62,8 +62,8 @@ plot.SCIR.output <- function(output,data) {
   exact<- exact.SCIR(param,data)
   t.median <- exact$tout
   y.median <- exact$out
-  points(ty[tmax:tf],data$I[tmax:tf]/log(10),pch=19,cex=1.5,col='darkgreen')
-  lines(t.median,y.median/log(10),col='darkorange',lwd=4)
+  points(ty[tmax:tf],data$I[tmax:tf]/log(10),pch=19,cex=1.5,col=rgb(.33,.55,.67,1))
+  lines(t.median,y.median/log(10),col=rgb(1,.55,0,1),lwd=4)
   
   # Annotate the plot
   arrows(tq,5,tq,3.2,angle=10,lwd=2) 
