@@ -22,7 +22,7 @@ require(deSolve)
 
 ## Data:
 All the datasets have been obtained from publicly available repositories. 
-- Data sets used in real-time forecasting (late march), created from Spanish Ministry of Health and curated by DATADISTA: 
+- Data sets used in real-time forecasting (late march), officially reported by Spanish Ministry of Health and curated by DATADISTA: 
 https://github.com/datadista/datasets/tree/master/COVID%2019/old_series
   + confirmed-march31.csv: Total number of confirmed cases (original data available until the 31st of march)
   + deaths-march31.csv: Total number of confirmed deaths (original data available until the 31st of march)
@@ -36,7 +36,7 @@ https://github.com/datadista/datasets/tree/master/COVID%2019/old_series
   + names.csv
 
 
-- Updated Datasets (late july), created from Spanish Ministry of Health and curated by El-Pais-Data:
+- Updated Datasets (late july), officially reported by Spanish Ministry of Health and curated by El-Pais-Data:
 https://www.epdata.es/datos/coronavirus-china-datos-graficos/498
   + covid-19-es.csv: Different columns contain information about confirmed, recovered and deaths.
 
