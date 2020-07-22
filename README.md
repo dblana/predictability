@@ -2,14 +2,18 @@
 ## Codes:
 - All codes require the library rjags, invoked using: 
 ```{r}
-dim(iris)
+require(rjags)
 ```
-  + jags-SCIR-realtime.R
-  + jags-SCIR-synthetic.R
-  + jags-SCIR-forensic-analysis.R
-  + jags-gompertz.R
-  + plot.SCIR.linear.output.R
-  + deSolve-SIQR.R
+  + jags-SCIR-realtime.R: Main code. Bayesian implementation of the SCIR model using JAGS and real-time data available while the epidemic was ongoing. Also contains auxiliary functions to plot the solution. 
+  + jags-SCIR-synthetic.R: Same implementation but using synthetic data generated with the code deSolve-SCIR.R (see below).
+  + jags-SCIR-forensic-analysis.R: Analysis of the end of the epidemic after the peak was reached using updated data by the end of july.
+  + jags-gompertz.R: Bayesian implementation of the Gompertz model using updated data by the end of july.
+  + plot.SCIR.linear.output.R: Auxiliary function to plot the output of jags-SCIR-realtime.R but using a linear vertical scale.
+- To generate the synthetic data we have used the library deSolve
+```{r}
+require(deSolve)
+```
+  + deSolve-SIQR.R: Integraion of the Ordinary Differential Equation for the SCIR model.
 
 
 ## Data:
