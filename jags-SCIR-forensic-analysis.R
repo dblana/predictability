@@ -55,7 +55,7 @@ plot.SCIR.output <- function(output,data) {
   yM <- colq(y,0.975)/log(10) # 97.5% quantile (and convert to log10 scale)
   ym <- colq(y,0.0225)/log(10)# 2.5% quantile
   yy <- c(yM,reverse(ym)) # patch 97.5 and (reversed) 2.5 quantiles
-  polygon(tt,yy,col=rgb(0,0,0,.2),border='gray')
+  polygon(tt,yy,col=rgb(0,0,0,.2),border=rgb(0,0,0,.2))
   
   param <- data.frame(t(colMed(mat.output[,1:4]))) # Median parameters from posteriors ("beta","p","q","rmu")
   # Create a vector with the exact solution of the SCIR model for the median parameters
@@ -63,7 +63,7 @@ plot.SCIR.output <- function(output,data) {
   t.median <- exact$tout
   y.median <- exact$out
   lines(t.median,y.median/log(10),col='darkorange',lwd=4)
-  points(ty[tmax:tf],data$I[tmax:tf]/log(10),pch=19,cex=.5,col=2)
+  points(ty[tmax:tf],data$I[tmax:tf]/log(10),pch=19,cex=1.5,col='darkgreen')
   
   # Annotate the plot
   arrows(tq,5,tq,3.2,angle=10,lwd=2) 

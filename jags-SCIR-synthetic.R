@@ -55,7 +55,7 @@ plot.SCIR.output.mock <- function(output,data) {
   yM <- colq(y,0.975)/log(10) # 97.5% quantile (and convert to log10 scale)
   ym <- colq(y,0.0225)/log(10)# 2.5% quantile
   yy <- c(yM,reverse(ym)) # patch 97.5 and (reversed) 2.5 quantiles
-  polygon(tt,yy,col=rgb(0,0,0,.2),border='gray')
+  polygon(tt,yy,col=rgb(0,0,0,.2),border=rgb(0,0,0,.2))
   
   param <- data.frame(t(colMed(mat.output[,1:4]))) # Median parameters from posteriors ("beta","p","q","rmu")
   # Create a vector with the exact solution of the SCIR model for the median parameters
