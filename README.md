@@ -24,15 +24,15 @@ require(deSolve)
 All the datasets have been obtained from publicly available repositories. 
 - Data sets used in real-time forecasting (late March), officially reported by Spanish Ministry of Health and curated by DATADISTA: 
 https://github.com/datadista/datasets/tree/master/COVID%2019/old_series
-  + confirmed-march31.csv: Total number of confirmed cases (original data available until the 31st of March)
-  + deaths-march31.csv: Total number of confirmed deaths (original data available until the 31st of March)
-  + recovered-march31.csv: Total number of confirmed recovered (original data available until the 31st of March)
+  + confirmed-march31.csv: Total number of confirmed cases (original data available until March 31st)
+  + deaths-march31.csv: Total number of confirmed deaths (original data available until March 31st)
+  + recovered-march31.csv: Total number of confirmed recovered (original data available until March 31st)
 
 
 - Also splitted by Spanish Autonomous Regions:
-  + aut-regions-confirmed-march31.csv: Total number of confirmed cases (original data available until the 31st of March)
-  + aut-regions-deaths-march31.csv: Total number of confirmed deaths (original data available until the 31st of March)
-  + aut-regions-recovered-march31.csv: Total number of confirmed recovered (original data available until the 31st of March)
+  + aut-regions-confirmed-march31.csv: Total number of confirmed cases (original data available until March 31st)
+  + aut-regions-deaths-march31.csv: Total number of confirmed deaths (original data available until March 31st)
+  + aut-regions-recovered-march31.csv: Total number of confirmed recovered (original data available until March 31st)
   + names.csv
 
 
@@ -40,7 +40,7 @@ https://github.com/datadista/datasets/tree/master/COVID%2019/old_series
 https://www.epdata.es/datos/coronavirus-china-datos-graficos/498
   + covid-19-es.csv: Different columns contain information about confirmed, recovered and deaths.
 
-**Note:** The data series for recovered was interrupted on the 17th of May.
+**Note:** The data series for recovered was interrupted on 17th May. 
 
 ## Sample outputs
 In the 'output' folder, we include some samples produced by the code and used to generate the figures in the paper.
