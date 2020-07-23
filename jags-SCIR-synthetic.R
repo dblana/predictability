@@ -91,7 +91,7 @@ plot.posteriors<- function(output) {
 
 scir.mockdata <- function(tmax=33,plot.flag=TRUE,save.plot=TRUE) {
   # Geerate data
-  source('deSolve-SIQR.R')
+  source('deSolve-SCIR.R')
   I <- c(fit0$I,fit$I[-1]) # Active cases
   X <- c(rep(0,11),fit$X[-1]) # Deaths+Recovered
   I <- log(I) # Change to logarithmic scale
