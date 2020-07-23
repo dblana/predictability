@@ -29,14 +29,14 @@ https://github.com/datadista/datasets/tree/master/COVID%2019/old_series
   + recovered-march31.csv: Total number of confirmed recovered (original data available until the 31st of march)
 
 
-- Also splitted by spanish autonomous regions:
+- Also splitted by Spanish Autonomous Regions:
   + aut-regions-confirmed-march31.csv: Total number of confirmed cases (original data available until the 31st of march)
   + aut-regions-deaths-march31.csv: Total number of confirmed deaths (original data available until the 31st of march)
   + aut-regions-recovered-march31.csv: Total number of confirmed recovered (original data available until the 31st of march)
   + names.csv
 
 
-- Updated Datasets (late july), officially reported by Spanish Ministry of Health and curated by El-Pais-Data:
+- Updated Datasets (forensic data), officially reported by Spanish Ministry of Health and curated by El-Pais-Data by late july, 2020:
 https://www.epdata.es/datos/coronavirus-china-datos-graficos/498
   + covid-19-es.csv: Different columns contain information about confirmed, recovered and deaths.
 
