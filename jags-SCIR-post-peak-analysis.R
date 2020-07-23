@@ -199,5 +199,5 @@ simulations[[2]] <- scir.bayesian2(tmax = 54) # Run code
 simulations[[3]] <- scir.bayesian2(tmax = 61) # Run code
 simulations[[4]] <- scir.bayesian2(tmax = 68) # Run code
 
-# saveRDS(simulations,'~/Documentos/Dropbox/Research/Big Data/Coronavirus/Comite del Covid-19/new-R/simulations-forensic.rda') # Uncomment to save all into a binary file
+# saveRDS(simulations,'~/Documentos/Dropbox/Research/Big Data/Coronavirus/Comite del Covid-19/new-R/simulations-postpeak.rda') # Uncomment to save all into a binary file
 #saveRDS(simulation,'output/simulation.rda') # Uncomment to save all into a binary file
