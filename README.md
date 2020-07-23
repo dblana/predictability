@@ -8,7 +8,7 @@ require(rjags)
 - Main codes:
   + jags-SCIR-realtime.R: Main code. Bayesian implementation of the SCIR model using JAGS and real-time data available while the epidemic was ongoing. Also contains auxiliary functions to plot the solution. 
   + jags-SCIR-synthetic.R: Same implementation but using synthetic data generated with the code deSolve-SCIR.R (see below).
-  + jags-SCIR-forensic-analysis.R: Analysis of the end of the epidemic after the peak was reached using updated data by the end of July.
+  + jags-SCIR-post-peak-analysis.R: Analysis of the end of the epidemic after the peak was reached using updated data by the end of July.
   + jags-gompertz.R: Bayesian implementation of the Gompertz model using updated data by the end of July.
  
 - To generate the synthetic data we have used the library deSolve
@@ -36,7 +36,7 @@ https://github.com/datadista/datasets/tree/master/COVID%2019/old_series
   + names.csv
 
 
-- Updated Datasets (forensic data), officially reported by Spanish Ministry of Health and curated by El-Pais-Data by late July, 2020:
+- Updated Datasets (post-peak data), officially reported by Spanish Ministry of Health and curated by El-Pais-Data by late July, 2020:
 https://www.epdata.es/datos/coronavirus-china-datos-graficos/498
   + covid-19-es.csv: Different columns contain information about confirmed, recovered and deaths.
 
