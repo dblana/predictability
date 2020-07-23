@@ -87,8 +87,9 @@ if(plot.flag==TRUE) {
   # Add some annotations to the plot
   arrows(75,190000,70,y[70],angle=10,lwd=3)
   text(70,180000,'After the 6th of may',pos=4,cex=1.5)
-  text(70,160000,'there is a new',pos=4,cex=1.5)
-  text(70,140000,'inflection point',pos=4,cex=1.5)
+  text(70,160000,'Gompertz curve',pos=4,cex=1.5)
+  text(70,140000,'saturates and cannot',pos=4,cex=1.5)
+  text(70,120000,'capture subsequent growth',pos=4,cex=1.5)
   abline(v=tpeak,lty=2,col=rgb(1,.55,0,1))
   text(tpeak,50000,"Real inflection ",pos=4,col=rgb(1,.55,0,1),cex=1.5)
   text(tpeak,30000,"point (epidemic  'peak')",pos=4,col=rgb(1,.55,0,1),cex=1.5)
