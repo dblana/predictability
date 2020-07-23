@@ -7,17 +7,17 @@ require(rjags)
 ```
 - Main codes:
   + [jags-SCIR-realtime.R](https://github.com/mariocastro73/predictability/blob/master/jags-SCIR-realtime.R): Main code. Bayesian implementation of the SCIR model using JAGS and real-time data available while the epidemic was ongoing. Also contains auxiliary functions to plot the solution. 
-  + jags-SCIR-synthetic.R: Same implementation but using synthetic data generated with the code deSolve-SCIR.R (see below).
-  + jags-SCIR-post-peak-analysis.R: Analysis of the end of the epidemic after the peak was reached using updated data by the end of July.
-  + jags-gompertz.R: Bayesian implementation of the Gompertz model using updated data by the end of July.
+  + [jags-SCIR-synthetic.R](https://github.com/mariocastro73/predictability/blob/master/jags-SCIR-synthetic.R): Same implementation but using synthetic data generated with the code deSolve-SCIR.R (see below).
+  + [jags-SCIR-post-peak-analysis.R](https://github.com/mariocastro73/predictability/blob/master/jags-SCIR-post-peak-analysis.R): Analysis of the end of the epidemic after the peak was reached using updated data by the end of July.
+  + [jags-gompertz.R](https://github.com/mariocastro73/predictability/blob/master/jags-gompertz.R): Bayesian implementation of the Gompertz model using updated data by the end of July.
  
 - To generate the synthetic data we have used the library deSolve
 ```{r}
 require(deSolve)
 ```
 - Auxiliary codes:
-  + plot.SCIR.linear.output.R: Auxiliary function to plot the output of jags-SCIR-realtime.R but using a linear vertical scale.
-  + deSolve-SCIR.R: Integraion of the Ordinary Differential Equation for the SCIR model.
+  + [plot.SCIR.linear.output.R](https://github.com/mariocastro73/predictability/blob/master/plot.SCIR.linear.output.R): Auxiliary function to plot the output of jags-SCIR-realtime.R but using a linear vertical scale.
+  + [deSolve-SCIR.R](https://github.com/mariocastro73/predictability/blob/master/deSolve-SCIR.R): Integraion of the Ordinary Differential Equation for the SCIR model.
 
 
 ## Data (see dataset folder):
