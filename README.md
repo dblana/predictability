@@ -6,7 +6,7 @@ A simple bayesian analysis of the compartimental SCIR model introduced in Refere
 require(rjags)
 ```
 - Main codes:
-  + jags-SCIR-realtime.R: Main code. Bayesian implementation of the SCIR model using JAGS and real-time data available while the epidemic was ongoing. Also contains auxiliary functions to plot the solution. 
+  + [jags-SCIR-realtime.R](https://github.com/mariocastro73/predictability/blob/master/jags-SCIR-realtime.R): Main code. Bayesian implementation of the SCIR model using JAGS and real-time data available while the epidemic was ongoing. Also contains auxiliary functions to plot the solution. 
   + jags-SCIR-synthetic.R: Same implementation but using synthetic data generated with the code deSolve-SCIR.R (see below).
   + jags-SCIR-post-peak-analysis.R: Analysis of the end of the epidemic after the peak was reached using updated data by the end of July.
   + jags-gompertz.R: Bayesian implementation of the Gompertz model using updated data by the end of July.
