@@ -39,6 +39,7 @@ https://github.com/datadista/datasets/tree/master/COVID%2019/old_series
 - Updated Datasets (post-peak data), officially reported by Spanish Ministry of Health and curated by El-Pais-Data by late July, 2020:
 https://www.epdata.es/datos/coronavirus-china-datos-graficos/498
   + covid-19-es.csv: Different columns contain information about confirmed, recovered and deaths.
+**Note:** The data series for recovered was interrupted on the 17th of May.
 
 ## Sample outputs
 In the 'output' folder, we include some samples produced by the code and used to generate the figures in the paper.
