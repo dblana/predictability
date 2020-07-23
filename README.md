@@ -20,7 +20,7 @@ require(deSolve)
   + deSolve-SCIR.R: Integraion of the Ordinary Differential Equation for the SCIR model.
 
 
-## Data:
+## Data (see dataset folder):
 All the datasets have been obtained from publicly available repositories. 
 - Data sets used in real-time forecasting (late March), officially reported by Spanish Ministry of Health and curated by DATADISTA: 
 https://github.com/datadista/datasets/tree/master/COVID%2019/old_series
@@ -39,6 +39,9 @@ https://github.com/datadista/datasets/tree/master/COVID%2019/old_series
 - Updated Datasets (post-peak data), officially reported by Spanish Ministry of Health and curated by El-Pais-Data by late July, 2020:
 https://www.epdata.es/datos/coronavirus-china-datos-graficos/498
   + covid-19-es.csv: Different columns contain information about confirmed, recovered and deaths.
+
+## Sample outputs
+In the 'output' folder, we include some samples produced by the code and used to generate the figures in the paper.
 
 ## References
 - V1: https://arxiv.org/abs/2004.08842
