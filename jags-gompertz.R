@@ -68,7 +68,7 @@ if(plot.flag==TRUE) {
   x11(width=9,height=7) # Create new window for plotting
   par(mar=c(5.1,5.1,4.1,2.1))
   yp <- mat[,-(1:4)] # Posterior predictive (ypred[1] ...ypred[90])
-  plot((data$y),xlim=c(0,tf),ylim=c(0,325000),pch=19,cex=.5,
+  plot((data$y),xlim=c(0,tf),ylim=c(0,325000),pch=19,cex=1.5,
        ylab='Total number of confirmed cases',xlab='Days since 27th of february',lwd=2,
        cex.lab=1.5,cex.axis=1.5)
   
@@ -86,10 +86,8 @@ if(plot.flag==TRUE) {
   
   # Add some annotations to the plot
   arrows(75,190000,70,y[70],angle=10,lwd=3)
-  text(70,180000,'After the 6th of may',pos=4,cex=1.5)
-  text(70,160000,'Gompertz curve',pos=4,cex=1.5)
-  text(70,140000,'saturates and cannot',pos=4,cex=1.5)
-  text(70,120000,'capture subsequent growth',pos=4,cex=1.5)
+  text(70,180000,'New inflection point',pos=4,cex=1.5)
+  text(70,160000,'(6th of May)',pos=4,cex=1.5)
   abline(v=tpeak,lty=2,col=rgb(1,.55,0,1))
   text(tpeak,50000,"Real inflection ",pos=4,col=rgb(1,.55,0,1),cex=1.5)
   text(tpeak,30000,"point (epidemic  'peak')",pos=4,col=rgb(1,.55,0,1),cex=1.5)
@@ -116,8 +114,8 @@ if(plot.flag==TRUE) { # Plot posterior distributions of the model parameters
 # Run example with default values
 fit.gompertz()
 # Run more examples
-fit.gompertz(prior = 10)
-fit.gompertz(delta.tpeak = 7)
-fit.gompertz(delta.tpeak = 7,prior=10)
-fit.gompertz(delta.tpeak = 21)
-fit.gompertz(delta.tpeak = 21,prior=10)
+#fit.gompertz(prior = 10)
+#fit.gompertz(delta.tpeak = 7)
+#fit.gompertz(delta.tpeak = 7,prior=10)
+#fit.gompertz(delta.tpeak = 21)
+#fit.gompertz(delta.tpeak = 21,prior=10)
