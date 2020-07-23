@@ -20,8 +20,8 @@ require(deSolve)
   + [deSolve-SCIR.R](https://github.com/mariocastro73/predictability/blob/master/deSolve-SCIR.R): Integraion of the Ordinary Differential Equation for the SCIR model.
 
 
-## Data (see [datasets folder](https://github.com/mariocastro73/predictability/tree/master/datasets)):
-All the datasets have been obtained from publicly available repositories. 
+## Data:
+All the datasets (see [datasets folder](https://github.com/mariocastro73/predictability/tree/master/datasets)) have been obtained from publicly available repositories. 
 - Data sets used in real-time forecasting (late March), officially reported by Spanish Ministry of Health and curated by DATADISTA: 
 https://github.com/datadista/datasets/tree/master/COVID%2019/old_series
   + confirmed-march31.csv: Total number of confirmed cases (original data available until March 31st)
