@@ -46,5 +46,5 @@ https://www.epdata.es/datos/coronavirus-china-datos-graficos/498
 In the [output folder](https://github.com/mariocastro73/predictability/tree/master/output), we include some samples produced by the code and used to generate the figures in the paper.
 
 ## References
-- V1: https://arxiv.org/abs/2004.08842
-- V2: 
+- V1: https://arxiv.org/abs/2004.08842v1
+- V2: https://arxiv.org/abs/2004.08842 
