@@ -48,3 +48,5 @@ In the [output folder](https://github.com/mariocastro73/predictability/tree/mast
 ## References
 - V1: https://arxiv.org/abs/2004.08842v1
 - V2: https://arxiv.org/abs/2004.08842 
+- Journal Version (PNAS): https://www.pnas.org/content/pnas/117/42/26190.full.pdf
+
